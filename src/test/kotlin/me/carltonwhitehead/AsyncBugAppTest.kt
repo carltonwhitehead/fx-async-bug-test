@@ -46,6 +46,7 @@ class AsyncBugAppTest(val rounds: Int) {
         app.scope.set(controller)
         FxToolkit.setupApplication { app }
         robot = FxRobot()
+
         println("rounds = $rounds")
     }
 
@@ -61,7 +62,7 @@ class AsyncBugAppTest(val rounds: Int) {
         every { controller.onAction(any()) }.answers { latch.countDown() }
 
         var i = 0
-        while(i <= rounds) {
+        while (i < rounds) {
             robot.clickOn("#bug")
             i++
         }
